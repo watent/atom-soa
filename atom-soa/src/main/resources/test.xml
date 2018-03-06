@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:atom="http://www.watent.com/schema/soa"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+       http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+	   http://www.watent.com/schema/soa
+	   http://www.watent.com/schema/soa.xsd"
+       default-lazy-init="true">
+
+    <atom:registry protocol="redis" address="127.0.0.1:6379"></atom:registry>
+   <!--<atom:reference id="userService" interface="com.watent.dubbo.test.UserService" loadbalance="random"-->
+    <!--protocol="http"></atom:reference>-->
+    <atom:protocol name="http" port="27017" host="127.0.0.1"></atom:protocol>
+
+    <atom:reference id="testServiceImpl" interface="com.watent.com.watent.soa.test.service.TestService" loadbalance="random" protocol="http"></atom:reference>
+    
+    <!--<bean id="testServiceImpl" class= "com.watent.dubbo.test.service.TestServiceImpl"></bean>-->
+    <atom:service interface="com.watent.com.watent.soa.test.service.TestService" ref="testServiceImpl" protocol="rmi"/>
+
+    <!--<atom:service interface="com.watent.dubbo.test.service.TestService" ref="testServiceImpl2" protocol="netty"/>-->
+
+    <!--<atom:service interface="com.watent.dubbo.test.service.TestService" ref="testServiceImpl3" protocol="http"/>-->
+
+    <!--<atom:service interface="com.watent.dubbo.test.service.TestService" ref="testServiceImpl4" protocol="rmi"/>-->
+
+</beans>

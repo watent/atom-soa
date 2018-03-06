@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:atom="http://www.watent.com/schema/soa"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                        http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+                        http://www.springframework.org/schema/mvc
+                        http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
+                        http://www.springframework.org/schema/context
+                        http://www.springframework.org/schema/context/spring-context-4.0.xsd
+                        http://www.springframework.org/schema/aop
+                        http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+                        http://www.watent.com/schema/soa
+	                    http://www.watent.com/schema/soa.xsd">
+
+    <!--<bean id="frameworkTestServiceImpl" class="com.watent.provider.frameworkservice.FrameworkTestServiceImpl"/>-->
+    <atom:protocol name="netty" port="1124" host="127.0.0.1" contextpath=""/>
+    <atom:registry protocol="redis" address="127.0.0.1:6379"/>
+    <atom:reference id="frameworkTestServiceImpl" interface="com.watent.provider.frameworkservice.FrameworkTestService" loadbalance="roundrob" protocol="netty" retries="3" cluster="failover"/>
+</beans>
